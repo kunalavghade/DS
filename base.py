@@ -53,7 +53,7 @@ class gui():
 		FastFood=Button(self.startframe,text="Fast Food",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command=self.FastFood)
 		FastFood.place(relheight=0.1,relwidth=0.44,relx=0.53,rely=0.43)
 
-		foodbasket=Button(self.startframe,text="Basket",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command=self.FastFood)
+		foodbasket=Button(self.startframe,text="Basket",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command=self.Basket_func)
 		foodbasket.place(relheight=0.1,relwidth=0.3,relx=0.35,rely=0.85)
 		self.startframe.place(relheight=1,relwidth=1)
 
@@ -88,7 +88,6 @@ class gui():
 			price=price + i[0]
 			print(i[0])
 		return price
-		
 
 	def BasketWin(self,data,price):
 		self.startframe.destroy()
@@ -98,11 +97,11 @@ class gui():
 		label1=Label(text="Your Oreders",bg=COLOR,anchor="s",font="arial 20 bold").place(relwidth=1,relheight=0.2)
 		label2=Label(text=f"${price}",bg=COLOR,anchor="center",font="arial 20").place(relwidth=1,relheight=0.1,rely=0.2)
 		
-		Remove=Button(self.startframe,text="Remove",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.mainWin)
-		Remove.place(relheight=0.1,relwidth=0.3,relx=0.15,rely=0.85)
+		Order=Button(self.startframe,text="Order",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.Order_func)
+		Order.place(relheight=0.1,relwidth=0.3,relx=0.15,rely=0.85)
 
-		Cancel=Button(self.startframe,text="Cancel",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.mainWin)
-		Cancel.place(relheight=0.1,relwidth=0.3,relx=0.55,rely=0.85)
+		Back=Button(self.startframe,text="Back",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.mainWin)
+		Back.place(relheight=0.1,relwidth=0.3,relx=0.55,rely=0.85)
 		
 		self.orderframe=Frame(self.startframe,bg=COLOR)
 		self.orderframe.place(relwidth=1,relheight=0.5,rely=0.3)
@@ -123,7 +122,6 @@ class gui():
 			name=Button(secondFrame,text=j[1],height=2,width=25,bg=COLOR,activebackground=COLOR,borderwidth=0,font="arial 15 bold",command= lambda x=j[1] : self.remove(x)).grid(row=i,column=1)
 			i+=1
 
-
 	def orderfood(self,name,data):
 		self.startframe.destroy()
 		self.startframe=Frame(self.Win,bg=COLOR)
@@ -134,9 +132,9 @@ class gui():
 		foodbasket=Button(self.startframe,text="Basket",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.Basket_func)
 		foodbasket.place(relheight=0.1,relwidth=0.3,relx=0.15,rely=0.85)
 
-		Cancel=Button(self.startframe,text="Cancel",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.mainWin)
-		Cancel.place(relheight=0.1,relwidth=0.3,relx=0.55,rely=0.85)
-		
+		Back=Button(self.startframe,text="Back",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.mainWin)
+		Back.place(relheight=0.1,relwidth=0.3,relx=0.55,rely=0.85)
+
 		self.orderframe=Frame(self.startframe,bg=COLOR)
 		self.orderframe.place(relwidth=1,relheight=0.5,rely=0.3)
 		my_canvas =  Canvas(self.orderframe,bg=COLOR)
@@ -155,11 +153,18 @@ class gui():
 			
 			name=Button(secondFrame,text=j[1],height=2,width=25,bg=COLOR,activebackground=COLOR,borderwidth=0,font="arial 15 bold",command= lambda x=int(j[0]),y=j[1] : self.add_to_basket(x,y)).grid(row=i,column=1)
 			i+=1
-			
+	
 	def add_to_basket(self,x,y):
 		self.l.createNode(x,y)
 		print(self.l.get_list())
 
+	def Order_func(self):
+		self.startframe.destroy()
+		self.startframe=Frame(self.Win,bg=COLOR)
+		self.startframe.place(relheight=1,relwidth=1)
+		label=Label(text="Thanks for Ordering !",bg=COLOR,anchor="center",font="arial 20").place(relwidth=1,relheight=0.85)
+		Back=Button(self.startframe,text="Back",bg=BUTTON,activebackground=BUTTON,borderwidth=0,font="arial 15 bold",activeforeground="#fff",command = self.mainWin)
+		Back.place(relheight=0.1,relwidth=0.3,relx=0.35,rely=0.85)
 
 if __name__=="__main__":
 	gui()
