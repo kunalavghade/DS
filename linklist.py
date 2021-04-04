@@ -50,3 +50,11 @@ class LinkedList:
             tmp=tmp.next
         return arr
 
+    def deleteList(self):
+        tmp = self.head
+        while(self.head != None):
+            self.head = self.head.next
+            tmp=None
+            tmp=self.head
+        self.head=None
+        self.tail=None
